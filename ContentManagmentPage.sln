@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "ContentManagmentPage", "ContentManagmentPage.phpproj", "{F13ABB47-47A1-480B-AC2C-DDA536C7E23C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F13ABB47-47A1-480B-AC2C-DDA536C7E23C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13ABB47-47A1-480B-AC2C-DDA536C7E23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13ABB47-47A1-480B-AC2C-DDA536C7E23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13ABB47-47A1-480B-AC2C-DDA536C7E23C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00709A8D-FB0B-49EB-AFF8-3939D4AC2D3A}
+	EndGlobalSection
+EndGlobal

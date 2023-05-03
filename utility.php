@@ -9,10 +9,12 @@ function DBConnection() {
     $socket = "";
     $user = "";
     $password = "";
-    $dbname = "";
+    $dbname = "contentmanagement";
+
+    include_once 'personalConnectionDetails.php';
 
     $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-        or die ('Could not connect to the database server' . mysqli_connect_error());
+        or die ("Could not connect to the database server, make sure you've updated personalConnectionDetails.php " . mysqli_connect_error());
 
     return $con
 }

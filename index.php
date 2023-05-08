@@ -1,3 +1,7 @@
 ﻿<?php
+include 'header.php';
 
-echo 'Hello World!';
+GenerateHeader('Landing Page');
+
+GenerateNavigationElement();
+?>

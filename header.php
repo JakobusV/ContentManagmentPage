@@ -6,7 +6,8 @@ include_once "utility.php";
  * @param string $title Title of the page being generated.
  * @param string $stylesheetPath Path to style sheet to be used.
  */
-function GenerateHeader($title = 'Content Management Page', $stylesheetPath = 'styleDefault.php') {
+function GenerateHeader($title = 'Content Management Page') { 
+    // TODO GET STYLE PATH FROM SESSION
     ValidateHeaderVariables($title, $stylesheetPath);
     return '
         <head>
@@ -32,6 +33,14 @@ function GenerateNavigationElement() {
     }
     return $navigationElement."</div><br/>";
 }
+
+/**
+ * Get all variables from session and return in a associative array
+ */
+function GetSession() {
+    // TODO
+}
+
 function ValidateHeaderVariables(&$title, &$stylesheetPath) {
     if (IsNullOrEmptyString($title))
         $title = 'Content Managment Page';

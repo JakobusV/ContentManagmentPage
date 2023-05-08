@@ -4,13 +4,6 @@ function IsNullOrEmptyString($str){
 }
 
 function DBConnection() {
-    $host = "";
-    $port = 0;
-    $socket = "";
-    $user = "";
-    $password = "";
-    $dbname = "contentmanagement";
-
     include_once 'personalConnectionDetails.php';
 
     $con = new mysqli($host, $user, $password, $dbname, $port, $socket)

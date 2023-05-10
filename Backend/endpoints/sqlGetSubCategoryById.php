@@ -6,15 +6,16 @@ header('Content-Type: application/json');
 
 $json = '';
 
-if (array_key_exists("id", $_GET)) {
+if (array_key_exists("manufacturer", $_GET)) {
     $dbConnection = DBConnection();
-    $id = $_GET["id"];
-    $veh = new vehicle();
+    $manufacturerId = $_GET["manufacturer"];
+    $vehi = new vehicle();
 
-    $query = $veh->SelectQuery($columns = array("mpg", "year", "model", "price", "imageUrl", "body_style"), $filters= array($veh->CreateFilterExact("manufacturer_id", $id)));
+    $query = $vehi->SelectQuery($columns = array("mpg", "year", "model", "price", "imageUrl", "body_style"), $filters= array($vehi->CreateFilterExact("manufacturer_id", $manufacturerId)));
     $dataSet = @mysqli_query($dbConnection, $query);
 
     if ($dataSet) {
+        $rowArray;
         while ($row = @mysqli_fetch_array($dataSet)) {
             $rowArray[] = json_decode($row[0]);
         }

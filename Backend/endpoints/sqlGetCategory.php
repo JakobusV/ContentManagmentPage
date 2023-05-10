@@ -12,6 +12,7 @@ $query = $manu->SelectQuery($columns= array("name"));
 $dataSet = @mysqli_query($dbConnection, $query);
 
 if ($dataSet) {
+    $rowArray;
     while ($row = @mysqli_fetch_array($dataSet)) {
         $rowArray[] = json_decode($row[0]);
     }

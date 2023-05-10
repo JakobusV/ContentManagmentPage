@@ -1,9 +1,7 @@
 ﻿<?php
 include 'header.php';
 
-GenerateHeader('Landing Page');
-
-GenerateNavigationElement();
+echo GenerateHeader('Landing Page', array('homepage.css'));
 ?>
 <div class="body-container">
   <div class="image-banner">
@@ -16,7 +14,7 @@ GenerateNavigationElement();
     <p>1. Choose Subscription Plan <br> 2. Create Account <br> 3. Car</p>
   </div>
   <div class="payment-plans">
-    <a class="subscription-option">
+    <a href="./Login.php" class="subscription-option">
       <div class="sub-header">Free</div>
       <div class="sub-body" style="background-color: #00CC99">
         <h1>$0 /mo</h1>
@@ -40,7 +38,7 @@ GenerateNavigationElement();
         <div class="sub-footer">Buy Now</div>
       </div>
     </a>
-    <a id="premplan" href="https://venmo.com/u/Cole-Belfry" class="subscription-option" >
+    <a id="premplan" href="https://venmo.com/u/Cole-Belfry" class="subscription-option">
       <div class="sub-header">Premium</div>
       <div class="sub-body" style="background-color: #DD1155">
         <h1>$10 /mo</h1>

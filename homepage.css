@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
+  margin-top: 1.62rem;
 }
 
 .image-banner {

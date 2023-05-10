@@ -1,6 +1,19 @@
 <?php
 include_once "header.php";
+include_once "footer.php";
+include_once "subCategoryElement.php";
 
-echo GenerateHeader(title:' ', stylesheetPath:'styleDefault.php');
-echo 
+// get db variable for category
+
+echo GenerateHeader(title:' Category Page');
+
+echo '
+<section>
+    <div class="sidebar">
+    </div>'.
+    GenerateSubCategory().
+'</section>
+';
+
+echo GenerateFooter();
 ?>

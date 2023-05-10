@@ -6,32 +6,38 @@ include_once "utility.php";
  * @param string $title Title of the page being generated.
  * @param string $stylesheetPath Path to style sheet to be used.
  */
-function GenerateHeader($title = 'Content Management Page') { 
+function GenerateHeader($title = 'Content Management Page', $additionalStylesheets = array()) {
     // TODO GET STYLE PATH FROM SESSION
+    $stylesheetPath = 'styleVariant1.php';
     ValidateHeaderVariables($title, $stylesheetPath);
-    return '
+    $links = CreateLinkTags($additionalStylesheets);
+    $header =  '
         <head>
             <title>'.$title.'</title>
             <link rel="stylesheet" href="'.$stylesheetPath.'"/>
-        </head>
-        <body>
-    ';
+            <link rel="stylesheet" href="styleDefault.php"/>
+            '.$links.'
+        </head>';
+    $nav = GenerateNavigationElement();
+    return $header.$nav;
 }
 function GenerateNavigationElement() {
+    // Get all categories
+
     $pages = array(
         "Home"=>"index.php",
         "Content Page"=>"contentPage.php",
     );
-    $navigationElement = '<div class="navigation">';
+    $navigationElement = '<nav>';
     foreach (array_keys($pages) as $pageKey)
     {
         $page = $pages[$pageKey];
         $navigationElement .= "<a href=".$page.">".$pageKey."</a>";
 
-        if (array_key_last($pages) != $pageKey) 
+        if (array_key_last($pages) != $pageKey)
             $navigationElement .= "&nbsp; &nbsp;";
     }
-    return $navigationElement."</div><br/>";
+    return $navigationElement."</nav><br/>";
 }
 
 /**
@@ -46,5 +52,14 @@ function ValidateHeaderVariables(&$title, &$stylesheetPath) {
         $title = 'Content Managment Page';
     if (IsNullOrEmptyString($stylesheetPath))
         $stylesheetPath = 'styleDefault.php';
+}
+
+function CreateLinkTags($additionalStylesheets = array()) {
+    $returnVal = "";
+    foreach ($additionalStylesheets as $stylesheet)
+    {
+    	$returnVal .= '<link rel="stylesheet" href="'.$stylesheet.'" />';
+    }
+    return $returnVal;
 }
 ?>

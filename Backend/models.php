@@ -1,6 +1,6 @@
 <?php
 class BaseModel {
-    public $id;
+    public int $id;
     /**
     * Allows for all or specific columns to be retrieved on table, returns query string for execution.
     * @param mixed $columns Optional: Columns that exist within the table, used to specify return data. If blank will return all columns.
@@ -34,14 +34,14 @@ class BaseModel {
     * Generic insert query utilizing all class specific properties.
     * @return string
     */
-    public function InsertQuery() { 
+    public function InsertQuery() {
         $values = get_class_vars(get_class($this));
         array_splice($values, 0, 1);
         $query = 'INSERT INTO '.get_class($this).' ';
         $columnNames = '('.join(', ', array_keys($values)).')';
         $columnValues = array();
         foreach ($values as $column => $val)
-            array_push($columnValues, $this->$column);
+            array_push($columnValues, (is_string($this->$column))? "'" . $this->$column ."'" : $this->$column);
         return $query.$columnNames.' VALUES ('.join(', ', $columnValues).');';
     }
     /**
@@ -53,7 +53,7 @@ class BaseModel {
         $query = 'UPDATE '.get_class($this).' SET ';
         $columnChanges = array();
         foreach ($values as $column => $val)
-            array_push($columnChanges, $column.' = '.$this->$column);
+            array_push($columnChanges, $column.' = '.(is_string($this->$column))? "'" . $this->$column ."'" : $this->$column);
         $query .= join(', ', $columnChanges).' WHERE id = '.$this->id;
         return $query;
     }
@@ -94,15 +94,18 @@ class BaseModel {
 }
 
 class manufacturer extends BaseModel {
+    public int $id;
     public string $name;
 }
 
 class user extends BaseModel {
+    public int $id;
     public string $name;
     public bool $isAdmin;
 }
 
 class vehicle extends BaseModel {
+    public int $id;
     public int $manufacturer_id;
     public string $model;
     public int $year;

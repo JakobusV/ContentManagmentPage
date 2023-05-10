@@ -3,8 +3,6 @@ header("Content-type: text/css");
 ?>
 
 .loginBlock {
-    border: 3px solid whitesmoke;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -32,16 +30,22 @@ p {
     color: #F5F5F5;
 }
 
-.loginSubmit {
+.loginBtn {
     align-self: center;
     border-radius: 20px;
     border: 0px;
-    color: #F5F5F5;
+    color: Black;
     font-size: 20px;
     margin: 10px;
     width: 200px;
     background: rgb(236, 255, 47);
     background: linear-gradient(0deg, rgba(236, 255, 47, 1) 0%, rgba(255, 141, 0, 1) 50%, rgba(255, 0, 0, 1) 100%);
+}
+
+.loginBtn:hover {
+    background: rgb(0,255,249);
+    background: linear-gradient(0deg, rgba(0,255,249,1) 0%, rgba(29,49,253,1) 50%, rgba(76,0,182,1) 100%);
+    cursor: pointer;
 }
 
 .loginBlockItem {
@@ -51,6 +55,7 @@ p {
     border-top: 0;
     margin-bottom: 10px;
     width: 200px;
+    color: #F5F5F5
 }
 
 input {

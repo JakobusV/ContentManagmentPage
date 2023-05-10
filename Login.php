@@ -4,7 +4,6 @@ include_once "loginCSS";
 ?>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>HTML, CSS and JavaScript demo</title>
         <link rel="stylesheet" href="loginCSS.php"/>
@@ -14,12 +13,20 @@ include_once "loginCSS";
         <div class="loginBlock">
             <h1>Login</h1>
             <p class="loginBlockItem">Email</p>
-            <input class="loginBlockItem" type="text" placeholder="✉️Type your email here" />
+            <input id="emailId" class="loginBlockItem" type="text" placeholder="✉️Type your email here" />
             <p class="loginBlockItem">Password</p>
-            <input class="loginBlockItem passwordBottom" type="text" placeholder="🔒Type your password here" />
-            <input type="submit" class="loginSubmit" />
-            <href></href>
+            <input id="passwordId" class="loginBlockItem passwordBottom" type="text" placeholder="🔒Type your password here" />
+            <button class="loginBtn" onclick="LoginFunc()">Login</button>
         </div>
     </body>
+
+    <script>
+        var request = new XMLHttpRequest();
+
+        function LoginFunc() {
+            console.log(document.getElementById("emailId").value)
+            console.log(document.getElementById("passwordId").value)
+        }
+    </script>
 
 </html>

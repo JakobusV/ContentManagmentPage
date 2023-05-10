@@ -9,6 +9,6 @@ function DBConnection() {
     $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
         or die ("Could not connect to the database server, make sure you've updated personalConnectionDetails.php " . mysqli_connect_error());
 
-    return $con;
+    return $con
 }
 ?>

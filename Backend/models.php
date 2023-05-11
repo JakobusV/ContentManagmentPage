@@ -71,7 +71,7 @@ class BaseModel {
     * @return string
     */
     public function CreateFilterExact($column, $value) {
-        return $column.'='.$value;
+        return $column.'='.$this->FormatColumnValue($value);
     }
     /**
     * Create SQL where statement using LIKE. Used for stirngs and text datatypes.

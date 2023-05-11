@@ -41,7 +41,7 @@ class BaseModel {
         $columnNames = '('.join(', ', array_keys($values)).')';
         $columnValues = array();
         foreach ($values as $column => $val)
-            array_push($columnValues, (is_string($this->$column))? "'" . $this->$column ."'" : $this->$column);
+            array_push($columnValues, $this->FormatColumnValue($this->$column));
         return $query.$columnNames.' VALUES ('.join(', ', $columnValues).');';
     }
     /**
@@ -53,7 +53,7 @@ class BaseModel {
         $query = 'UPDATE '.get_class($this).' SET ';
         $columnChanges = array();
         foreach ($values as $column => $val)
-            array_push($columnChanges, $column.' = '.(is_string($this->$column))? "'" . $this->$column ."'" : $this->$column);
+            array_push($columnValues, $this->FormatColumnValue($this->$column));
         $query .= join(', ', $columnChanges).' WHERE id = '.$this->id;
         return $query;
     }
@@ -90,6 +90,20 @@ class BaseModel {
     protected function ValidateColumn($column) {
         if (!property_exists(get_class($this), $column))
             throw new UnexpectedValueException("Column not found within table. column:".$column." table:".get_class($this));
+    }
+
+    /**
+     * Formats given value for sql query usage
+     * String data types are surounded by single quotes
+     * Bool data types are converted to 1 for true and 0 for false
+     * Other numbers are unchanged
+     * @param mixed $value
+     * @return mixed
+     */
+    protected function FormatColumnValue($value) {
+        if (is_string($value)) return "'" . $value . "'";
+        else if (is_bool($value)) return ($value)? 1 : 0;
+        else return $value;
     }
 }
 

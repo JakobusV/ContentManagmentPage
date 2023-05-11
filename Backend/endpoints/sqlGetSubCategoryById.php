@@ -11,7 +11,7 @@ if (array_key_exists("manufacturer", $_GET)) {
     $manufacturerId = $_GET["manufacturer"];
     $vehi = new vehicle();
 
-    $query = $vehi->SelectQuery($columns = array("mpg", "year", "model", "price", "imageUrl", "body_style"), $filters= array($vehi->CreateFilterExact("manufacturer_id", $manufacturerId)));
+    $query = $vehi->SelectQuery($columns = array(), $filters= array($vehi->CreateFilterExact("manufacturer_id", $manufacturerId)));
     $dataSet = @mysqli_query($dbConnection, $query);
 
     if ($dataSet) {

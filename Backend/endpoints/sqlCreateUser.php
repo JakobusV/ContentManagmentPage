@@ -7,10 +7,11 @@ header('Content-Type: application/json');
 $json = '';
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (array_key_exists("userName", $data) && array_key_exists("userAdminStatus", $data)) {
+if (array_key_exists("userEmail", $data) && array_key_exists("userPassword", $data) && array_key_exists("userAdminStatus", $data)) {
     $dbConnection = DBConnection();
     $user = new user();
-    $user->name = $data["userName"];
+    $user->email = $data["userEmail"];
+    $user->password = $data["userPassword"];
     $user->isAdmin = $data["userAdminStatus"];
 
     $query = $user->InsertQuery();

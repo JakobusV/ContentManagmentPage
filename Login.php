@@ -24,9 +24,12 @@ include_once "loginCSS";
         var request = new XMLHttpRequest();
 
         function LoginFunc() {
-            console.log(document.getElementById("emailId").value)
-            console.log(document.getElementById("passwordId").value)
-        }
+            #console.log(document.getElementById("emailId").value)
+            #console.log(document.getElementById("passwordId").value)
+            var email = document.getElementById("emailId").value;
+            var password = document.getElementById("passwordId").value;
+
+        } 
     </script>
 
 </html>

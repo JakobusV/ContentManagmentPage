@@ -53,7 +53,7 @@ class BaseModel {
         $query = 'UPDATE '.get_class($this).' SET ';
         $columnChanges = array();
         foreach ($values as $column => $val)
-            array_push($columnValues, $this->FormatColumnValue($this->$column));
+            array_push($columnChanges, $column.' = '.$this->FormatColumnValue($this->$column));
         $query .= join(', ', $columnChanges).' WHERE id = '.$this->id;
         return $query;
     }

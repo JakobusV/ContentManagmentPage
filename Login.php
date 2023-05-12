@@ -19,17 +19,19 @@ include_once "loginCSS";
             <button class="loginBtn" onclick="LoginFunc()">Login</button>
         </div>
     </body>
-
-    <script>
-        var request = new XMLHttpRequest();
-
-        function LoginFunc() {
-            #console.log(document.getElementById("emailId").value)
-            #console.log(document.getElementById("passwordId").value)
-            var email = document.getElementById("emailId").value;
-            var password = document.getElementById("passwordId").value;
-
-        } 
-    </script>
-
 </html>
+
+<script>
+    var request = new XMLHttpRequest();
+
+    function LoginFunc() {
+        console.log(document.getElementById("emailId").value)
+        console.log(document.getElementById("passwordId").value)
+        var email = document.getElementById("emailId").value;
+        var password = document.getElementById("passwordId").value;
+
+        request.open('GET', '../Backend/endpoints/sqlGetMatchingUser.php?userEmail=' + email + '&userPassword=' + password)
+        request.send()
+
+    }
+</script>

@@ -5,13 +5,15 @@ include_once '../../utility.php';
 header('Content-Type: application/json');
 
 $json = '';
+$data = json_decode(file_get_contents('php://input'), true);
 
-if (array_key_exists("manufacturer", $_GET)) {
+if (array_key_exists("userEmail", $data) && array_key_exists("userPassword", $data)) {
     $dbConnection = DBConnection();
-    $manufacturerId = $_GET["manufacturer"];
-    $vehi = new vehicle();
+    $userEmail = $data["userEmail"];
+    $userPassword = $data["userPassword"];
+    $user = new user();
 
-    $query = $vehi->SelectQuery($columns = array(), $filters= array($vehi->CreateFilterExact("manufacturer_id", $manufacturerId)));
+    $query = $user->SelectQuery($columns = array(), $filters = array($user->CreateFilterExact("email", $userEmail), $user->CreateFilterExact("password", $userPassword)));
     $dataSet = @mysqli_query($dbConnection, $query);
 
     if ($dataSet) {
@@ -24,9 +26,8 @@ if (array_key_exists("manufacturer", $_GET)) {
     @mysqli_close($dbConnection);
 
     if ($json == "null") {
-        $json = "Unknown Manufacturer";
+        $json = "No Matching Users";
     }
 }
-
 echo $json;
 ?>

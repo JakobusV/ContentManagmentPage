@@ -15,8 +15,9 @@ include_once "loginCSS";
             <p class="loginBlockItem">Email</p>
             <input id="emailId" class="loginBlockItem" type="text" placeholder="✉️Type your email here" />
             <p class="loginBlockItem">Password</p>
-            <input id="passwordId" class="loginBlockItem passwordBottom" type="text" placeholder="🔒Type your password here" />
-            <button class="loginBtn" onclick="LoginFunc()">Login</button>
+            <input id="passwordId" class="loginBlockItem passwordBottom" type="password" placeholder="🔒Type your password here" />
+            <button class="loginBtn" onclick="LoginFunction()">Login</button>
+            <p class="loginBlockItem" id="loginMessage">Fucker<p/>
         </div>
     </body>
 </html>
@@ -24,14 +25,33 @@ include_once "loginCSS";
 <script>
     var request = new XMLHttpRequest();
 
-    function LoginFunc() {
+    function LoginFunction(){
         console.log(document.getElementById("emailId").value)
         console.log(document.getElementById("passwordId").value)
+
         var email = document.getElementById("emailId").value;
         var password = document.getElementById("passwordId").value;
+        var body = '{"userEmail":"'+email+'", "userPassword":"'+password+'"}'
 
-        request.open('GET', '../Backend/endpoints/sqlGetMatchingUser.php?userEmail=' + email + '&userPassword=' + password)
-        request.send()
+        request.open('POST', '../Backend/endpoints/sqlGetMatchingUser.php')
+        request.send(body)
+        request.onload = OnLoadJson
 
     }
+
+    function OnLoadJson(evt) {
+        var response;
+        var data;
+
+        response = request.responseText;
+
+        if (response == "No Mathing Users") {
+            const loginMessagePTag = document.getElementById('loginMessage');
+            loginMessagePTag.innerHTML = 'Login Failed!';
+        }
+        else {
+            window.location.href = 'contentPage.php'
+        }    
+    }
+
 </script>

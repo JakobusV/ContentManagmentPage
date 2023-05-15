@@ -1,7 +1,6 @@
 <?php
 include_once "header.php";
 include_once "loginCSS";
-include_once "utility.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +17,7 @@ include_once "utility.php";
             <p class="loginBlockItem">Password</p>
             <input id="passwordId" class="loginBlockItem passwordBottom" type="password" placeholder="🔒Type your password here" />
             <button class="loginBtn" onclick="LoginFunction()">Login</button>
-            <p class="loginBlockItem" id="loginMessage">Fucker<p/>
+            <p class="loginBlockItem" id="loginMessage"></p>
         </div>
     </body>
 </html>
@@ -42,17 +41,25 @@ include_once "utility.php";
 
     function OnLoadJson(evt) {
         var response;
-        var data;
 
-        response = request.responseText;
+        var response = request.responseText;
 
-        if (response == "No Mathing Users") {
+        if (response === "No Matching Users") {
             const loginMessagePTag = document.getElementById('loginMessage');
             loginMessagePTag.innerHTML = 'Login Failed!';
+        } else {
+            var json = JSON.parse(response)
+            var email = json[0].email
+            var password = json[0].password
+            var isAdmin = json[0].isAdmin
+
+            var body = '{"userEmail":"'+email+'", "userPassword":"'+password+'", "isAdmin":"'+isAdmin+'"}'
+
+            request.open('POST', '../Backend/endpoints/LoginHelper.php')
+            request.send(body)
+
+            window.location.href = "contentPage.php"
         }
-        else {
-            window.location.href = 'contentPage.php';
-        }    
     }
 
 </script>

@@ -117,6 +117,7 @@ class user extends BaseModel {
     public string $email;
     public string $password;
     public bool $isAdmin;
+    public string $stylePreference;
 }
 
 class vehicle extends BaseModel {

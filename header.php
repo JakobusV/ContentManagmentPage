@@ -6,7 +6,7 @@ include_once "utility.php";
  * @param string $title Title of the page being generated.
  * @param string $stylesheetPath Path to style sheet to be used.
  */
-function GenerateHeader($title = 'Content Management Page', $additionalStylesheets = array()) {
+function GenerateHeader($title = 'Content Management', $additionalStylesheets = array()) {
     // TODO GET STYLE PATH FROM SESSION
     $stylesheetPath = 'styleVariant1.php';
     ValidateHeaderVariables($title, $stylesheetPath);
@@ -23,18 +23,8 @@ function GenerateHeader($title = 'Content Management Page', $additionalStyleshee
 }
 function GenerateNavigationElement() {
     // Get all categories
-    $pages = array();
-    if(isset($_SESSION['user'])){
-        $pages = array(
-            "Home"=>"index.php",
-            "Content Page"=>"contentPage.php",
-        );
-    } else (
-        $pages = array(
-            "Home"=>"index.php",
-            "Login"=>"Login.php",
-        )
-    );
+    $pages = CreatePageArray();
+
     $navigationElement = '<nav>';
     foreach (array_keys($pages) as $pageKey)
     {
@@ -45,6 +35,19 @@ function GenerateNavigationElement() {
             $navigationElement .= "&nbsp; &nbsp;";
     }
     return $navigationElement."</nav><br/>";
+}
+
+function CreatePageArray() {
+    $categories = CategoriesForHeader();
+
+    $pages = array(
+        "Home"=>"index.php",
+    );
+
+    while ($row = $categories->fetch_assoc())
+        $pages[$row["name"]] = 'contentPage.php?category='.$row["id"];
+
+    return $pages;
 }
 
 /**

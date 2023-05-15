@@ -1,6 +1,7 @@
 <?php
 include_once "header.php";
 include_once "loginCSS";
+include_once "utility.php";
 ?>
 <!DOCTYPE html>
 <html>

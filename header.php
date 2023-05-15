@@ -23,10 +23,17 @@ function GenerateHeader($title = 'Content Management Page', $additionalStyleshee
 }
 function GenerateNavigationElement() {
     // Get all categories
-
-    $pages = array(
-        "Home"=>"index.php",
-        "Content Page"=>"contentPage.php",
+    $pages = array();
+    if(isset($_SESSION['user'])){
+        $pages = array(
+            "Home"=>"index.php",
+            "Content Page"=>"contentPage.php",
+        );
+    } else (
+        $pages = array(
+            "Home"=>"index.php",
+            "Login"=>"Login.php",
+        )
     );
     $navigationElement = '<nav>';
     foreach (array_keys($pages) as $pageKey)

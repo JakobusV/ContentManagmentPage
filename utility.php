@@ -65,9 +65,8 @@ function LoggedInConfirmed($email, $password, $auth) {
     }
 }
 
-function GetUserPreferences() {
+function SetUserPreferences($styleName) {
     //TODO: Get user preference style from endpoint
-    $styleName = "user_preferences";
     CreateCookie("user_style_pref", $styleName, 100000);
 }
 

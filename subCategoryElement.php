@@ -2,6 +2,8 @@
 function GenerateSubCategory($id) {
     if ($id == null)
         return '<div class="subcategory"></div>';
+
+    include "subCategoryElementGenerator.php";
     return '
 <div class="subcategory">
     <img id="imageUrl" />
@@ -24,10 +26,10 @@ function GenerateSubCategory($id) {
         </tr>
         <tr>
             <td>Price</td>
-            <td> id="price"</td>
+            <td id="price"></td>
         </tr>
     </table>
 </div>
-'.include "subCategoryElementGenerator.php";
+';
 }
 ?>

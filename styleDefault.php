@@ -77,15 +77,55 @@ section>div {
     grid-area: subs;
     border-radius: 0 0 0 1rem;
     background-color: var(--primary-base);
-    height: 100%;
     width: 100%;
     box-shadow: inset black -12px 6px 10px -10px;
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+.sidebar-sub-btn {
+    height: 2rem;
+    background-color: var(--primary-dark);
+    padding-left: 1rem;
+    border-radius: 20px;
+    box-shadow: black 2px 2px 5px 0px;
+    color: black;
+    text-decoration: none;
+    padding-top: 1rem;
+}
+.sidebar-sub-btn:hover {
+    border: solid 2px var(--secondary-light);
+}
+.active {
+    border: solid 2px var(--secondary-base);
+    margin-left: 2rem;
 }
 
 .subcategory {
     grid-area: content;
     background-color: var(--primary-dark);
     border-radius: 0 1rem 1rem 0; 
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-top: 1rem;
+    gap: 10px;
+}
+
+.subcategory img {
+    width: 90%;
+    max-height: 60%;
+}
+
+.subcategory table {
+    border: 2px solid black;
+}
+
+.subcategory table tr td {
+    border: 1px solid #00000055;
+    padding: 0.25rem;
 }
 
 footer {

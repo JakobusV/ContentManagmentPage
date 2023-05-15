@@ -3,27 +3,29 @@
 ?>
 
 <script>
-    var request = new XMLHttpRequest();
+    var requestsub = new XMLHttpRequest();
 
     getSub = () => {
         const sub = getURLParameter("sub");
 
         const requestAddr = "backend/endpoints/sqlGetSubCategoryBySubCategoryId.php?vehicle=" + sub;
-        request.open("GET", requestAddr);
-        request.onload = generateSub;
-        request.send();
+        requestsub.open("GET", requestAddr);
+        requestsub.onload = generateSub;
+        requestsub.send();
     }
 
     generateSub = (event) => {
         var subs = [];
         var data = event;
-        var response = request.responseText;
+        var response = requestsub.responseText;
         data = JSON.parse(response);
         data = data[0];
+        console.log(data);
         ids = ['model', 'year', 'mpg', 'price', 'body_style'];
 
-        for (i in ids)
-            getElementAndSetIt(i, data);
+        for (i in ids) {
+            getElementAndSetIt(ids[i], data);
+        }
 
         document.getElementById('imageUrl').src = data['imageUrl'];
     }
@@ -37,5 +39,5 @@
         return URLParams.get(parameterKey);
     }
 
-    getSubs();
+    getSub();
 </script>

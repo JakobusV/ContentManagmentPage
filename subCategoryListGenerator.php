@@ -24,10 +24,10 @@
 
         for (i in data) {
             var classes = "sidebar-sub-btn"
-            var model = data[i].model;
+            var model = data[i].id;
             if (model == active)
                 classes += " active"
-            subs.push(`<a href="contentPage.php?category=${cat}&sub=${model}">${model}</a>`);
+            subs.push(`<a class="${classes}" href="contentPage.php?category=${cat}&sub=${model}">${data[i].model}</a>`);
         }
 
         var res = subs.join("\n");

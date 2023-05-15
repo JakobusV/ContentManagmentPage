@@ -8,7 +8,7 @@ $json = '';
 $dbConnection = DBConnection();
 $manu = new manufacturer();
 
-$query = $manu->SelectQuery($columns= array("name"));
+$query = $manu->SelectQuery();
 $dataSet = @mysqli_query($dbConnection, $query);
 
 if ($dataSet) {

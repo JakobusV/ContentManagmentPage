@@ -50,7 +50,7 @@ include_once "loginCSS";
             loginMessagePTag.innerHTML = 'Login Failed!';
         }
         else {
-            window.location.href = 'contentPage.php'
+            window.location.href = 'contentPage.php';
         }    
     }
 

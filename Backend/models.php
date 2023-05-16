@@ -131,4 +131,17 @@ class vehicle extends BaseModel {
     public float $price;
 }
 
+function GetAllTables() {
+    $tables = array();
+    $path = realpath(__FILE__);
+    $allClasses = get_declared_classes();
+    foreach ($allClasses as $class)
+    {
+    	$classDetails = new ReflectionClass($class);
+        $filePath = $classDetails->getFileName();
+        if ($filePath == $path)
+            array_push($tables, $class);
+    }
+    return $tables;
+}
 ?>

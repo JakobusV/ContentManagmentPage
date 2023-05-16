@@ -87,6 +87,12 @@ function CategoriesForHeader() {
     return @mysqli_query($con, "SELECT id, name FROM manufacturer");
 }
 
+function SubCategories() {
+    $con = DBConnection();
+
+    return @mysqli_query($con, "SELECT * FROM vehicle");
+}
+
 function GetCatName($id) {
     $categories = CategoriesForHeader();
 
@@ -95,5 +101,13 @@ function GetCatName($id) {
             return $row['name'];
 
     return '';
+}
+
+function curlURL($url) {
+    $curl = curl_init();
+    curl_setopt_array($curl, array(CURLOPT_URL=>$url,CURLOPT_RETURNTRANSFER=>true));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
 }
 ?>

@@ -140,3 +140,17 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
+.admin-del {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-item: center;
+}
+.cat, .sub {
+    overflow: auto;
+    height: 80%;
+}
+.cat table, .sub table {
+    table-layout: fixed;
+}

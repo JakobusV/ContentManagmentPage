@@ -6,10 +6,8 @@ include_once "utility.php";
  * @param string $title Title of the page being generated.
  * @param string $stylesheetPath Path to style sheet to be used.
  */
-function GenerateHeader($title = 'Content Management Page', $additionalStylesheets = array())
-{
+function GenerateHeader($title = 'Content Management', $additionalStylesheets = array()) {
     // TODO GET STYLE PATH FROM SESSION
-    $stylesheetPath = 'styleVariant1.php';
     ValidateHeaderVariables($title, $stylesheetPath);
     $links = CreateLinkTags($additionalStylesheets);
     $header = '
@@ -55,7 +53,20 @@ function GenerateNavigationElement()
         if (array_key_last($pages) != $pageKey)
             $navigationElement .= "&nbsp; &nbsp;";
     }
-    return $navigationElement . "</nav><br/>";
+    return $navigationElement."</nav><br/>";
+}
+
+function CreatePageArray() {
+    $categories = CategoriesForHeader();
+
+    $pages = array(
+        "Home"=>"index.php",
+    );
+
+    while ($row = $categories->fetch_assoc())
+        $pages[$row["name"]] = 'contentPage.php?category='.$row["id"];
+
+    return $pages;
 }
 
 /**
@@ -71,7 +82,7 @@ function ValidateHeaderVariables(&$title, &$stylesheetPath)
     if (IsNullOrEmptyString($title))
         $title = 'Content Managment Page';
     if (IsNullOrEmptyString($stylesheetPath))
-        $stylesheetPath = 'styleDefault.php';
+        $stylesheetPath = 'styleVariant1.php';
 }
 
 function CreateLinkTags($additionalStylesheets = array())

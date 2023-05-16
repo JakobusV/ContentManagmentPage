@@ -71,7 +71,7 @@ class BaseModel {
     * @return string
     */
     public function CreateFilterExact($column, $value) {
-        return $column.'='.$value;
+        return $column.'='.$this->FormatColumnValue($value);
     }
     /**
     * Create SQL where statement using LIKE. Used for stirngs and text datatypes.
@@ -114,8 +114,10 @@ class manufacturer extends BaseModel {
 
 class user extends BaseModel {
     public int $id;
-    public string $name;
+    public string $email;
+    public string $password;
     public bool $isAdmin;
+    public string $stylePreference;
 }
 
 class vehicle extends BaseModel {

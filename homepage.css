@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
 body {
   margin: 0;
   font-family: 'Open Sans';
   background-color: #3f3f3f;
 }
-.body-container { 
+
+.body-container {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -31,11 +33,15 @@ body {
   color: white;
   font-size: 3rem;
   font-weight: bold;
+  animation-name: sizeChange;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
 }
 
 .image-banner img {
   width: 100%;
 }
+
 .info-container {
   margin: 1rem 3rem;
   padding-left: 1rem;
@@ -62,12 +68,12 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.subscription-option:hover{
+.subscription-option:hover {
   border: 3px solid white;
   cursor: pointer;
 }
 
-.subscription-option ul{
+.subscription-option ul {
   text-align: left;
 }
 
@@ -81,7 +87,7 @@ body {
 
 .sub-body {
   padding: 0.25rem 3rem;
-  color:  #FFFF;
+  color: #FFFF;
   height: 100%;
 }
 
@@ -89,4 +95,36 @@ body {
   padding: 0.25rem;
   border: 1px solid white;
   font-size: 1rem;
+}
+
+@keyframes colorChange {
+  0% {
+    color: red;
+  }
+
+  25% {
+    color: yellow;
+  }
+
+  50% {
+    color: blue;
+  }
+
+  100% {
+    color: green;
+  }
+}
+
+@keyframes sizeChange {
+  0% {
+    font-size: 3rem;
+  }
+
+  50% {
+    font-size: 4rem;
+  }
+
+  100% {
+    font-size: 3rem;
+  }
 }

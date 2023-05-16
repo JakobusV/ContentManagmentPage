@@ -5,11 +5,11 @@ include_once "loginCSS";
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HTML, CSS and JavaScript demo</title>
+        <title>Content Management Login</title>
         <link rel="stylesheet" href="loginCSS.php"/>
     </head>
 
-    <body class="background">
+    <body>
         <div class="loginBlock">
             <h1>Login</h1>
             <p class="loginBlockItem">Email</p>

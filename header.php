@@ -7,8 +7,7 @@ include_once "utility.php";
  * @param string $stylesheetPath Path to style sheet to be used.
  */
 function GenerateHeader($title = 'Content Management', $additionalStylesheets = array()) {
-    // TODO GET STYLE PATH FROM SESSION
-    $stylesheetPath = 'styleVariant1.php';
+    $stylesheetPath = GetSession();
     ValidateHeaderVariables($title, $stylesheetPath);
     $links = CreateLinkTags($additionalStylesheets);
     $header =  '
@@ -54,14 +53,14 @@ function CreatePageArray() {
  * Get all variables from session and return in a associative array
  */
 function GetSession() {
-    // TODO
+    return $_COOKIE["user_style_pref"];
 }
 
 function ValidateHeaderVariables(&$title, &$stylesheetPath) {
     if (IsNullOrEmptyString($title))
         $title = 'Content Managment Page';
     if (IsNullOrEmptyString($stylesheetPath))
-        $stylesheetPath = 'styleDefault.php';
+        $stylesheetPath = 'styleVariant1.php';
 }
 
 function CreateLinkTags($additionalStylesheets = array()) {

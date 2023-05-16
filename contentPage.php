@@ -3,17 +3,22 @@ include_once "header.php";
 include_once "footer.php";
 include_once "subCategoryElement.php";
 
-echo GenerateHeader('Category Page');
+session_start();
 
-if (isset($_GET["category"]))
-    $category = $_GET["category"];
+if(!isset($_SESSION["current_user"]["auth"])){
+    header("Location: Login.php");
+} else {
+    echo GenerateHeader('Category Page');
 
-if (isset($_GET["sub"]))
-    $sub = $_GET['sub'];
+    if (isset($_GET["category"]))
+        $category = $_GET["category"];
 
-$catName = GetCatName($category);
+    if (isset($_GET["sub"]))
+        $sub = $_GET['sub'];
 
-echo '
+    $catName = GetCatName($category);
+
+    echo '
 <section>
     <div>
         <div class="sidebar">
@@ -23,12 +28,14 @@ echo '
             <div class="sidebar-subcats-cont">
             </div>
         </div>'.
-        GenerateSubCategory($sub).
+    GenerateSubCategory($sub).
     '</div>
 </section>
 ';
 
-echo GenerateFooter();
+    echo GenerateFooter();
 
-include_once "subCategoryListGenerator.php";
+    include_once "subCategoryListGenerator.php";
+}
+
 ?>

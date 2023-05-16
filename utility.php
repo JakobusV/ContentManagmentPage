@@ -1,4 +1,5 @@
 <?php
+session_start();
 function IsNullOrEmptyString($str){
     return ($str === null || trim($str) === '');
 }
@@ -17,8 +18,10 @@ use for html style preferences
 */
 function CreateCookie($name, $value, $lifetime){
     if(!isset($_COOKIE[$name])){
-        setcookie($name, $value, time()+$lifetime);
+        setcookie($name, $value, time()+$lifetime, '/');
         return true;
+    } else if ($_COOKIE[$name] != $value) {
+        setcookie($name, $value, time()+$lifetime, '/');
     } else {
         return false;
     }
@@ -28,13 +31,13 @@ Kills the given cookie
 */
 function KillCookie($name){
     if(isset($_COOKIE[$name])){
-        setcookie($name, "", time()-10000);
+        setcookie($name, "", time()-36000*10000000000, '/');
         return true;
     } else {
         return false;
     }
 }
-/** 
+/**
  * Creates a new session
 */
 //Use for account details
@@ -65,10 +68,13 @@ function LoggedInConfirmed($email, $password, $auth) {
     }
 }
 
-function GetUserPreferences() {
+function GetUserPreferences($styleFilePath) {
     //TODO: Get user preference style from endpoint
-    $styleName = "user_preferences";
-    CreateCookie("user_style_pref", $styleName, 100000);
+    if(IsNullOrEmptyString($styleFilePath)){
+        $styleFilePath = "defaultStyle.php";
+    } else {
+        CreateCookie("user_style_pref", $styleFilePath, 3600);
+    }
 }
 
 function LoggedOut(){

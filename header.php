@@ -6,66 +6,79 @@ include_once "utility.php";
  * @param string $title Title of the page being generated.
  * @param string $stylesheetPath Path to style sheet to be used.
  */
-function GenerateHeader($title = 'Content Management Page', $additionalStylesheets = array()) {
+function GenerateHeader($title = 'Content Management Page', $additionalStylesheets = array())
+{
     // TODO GET STYLE PATH FROM SESSION
     $stylesheetPath = 'styleVariant1.php';
     ValidateHeaderVariables($title, $stylesheetPath);
     $links = CreateLinkTags($additionalStylesheets);
-    $header =  '
+    $header = '
         <head>
-            <title>'.$title.'</title>
-            <link rel="stylesheet" href="'.$stylesheetPath.'"/>
+            <title>' . $title . '</title>
+            <link rel="stylesheet" href="' . $stylesheetPath . '"/>
             <link rel="stylesheet" href="styleDefault.php"/>
-            '.$links.'
+            ' . $links . '
         </head>';
     $nav = GenerateNavigationElement();
-    return $header.$nav;
+    return $header . $nav;
 }
-function GenerateNavigationElement() {
+function GenerateNavigationElement()
+{
     // Get all categories
     $pages = array();
-    if(isset($_SESSION['user'])){
+    if (isset($_SESSION['current_user'])) {
+        $curAuth = $_SESSION['current_user']["auth"];
+        if ($curAuth === 1) {
+            $pages = array(
+                "Home" => "index.php",
+                "Content Page" => "contentPage.php",
+                "Add Vehicles" => "AddPage.php",
+                "Delete Vehicles" => "AdminVM.php",
+            );
+        }
         $pages = array(
-            "Home"=>"index.php",
-            "Content Page"=>"contentPage.php",
+            "Home" => "index.php",
+            "Content Page" => "contentPage.php",
         );
-    } else (
-        $pages = array(
-            "Home"=>"index.php",
-            "Login"=>"Login.php",
-        )
-    );
+    } else
+        (
+            $pages = array(
+                "Home" => "index.php",
+                "Login" => "Login.php",
+            )
+        );
     $navigationElement = '<nav>';
-    foreach (array_keys($pages) as $pageKey)
-    {
+    foreach (array_keys($pages) as $pageKey) {
         $page = $pages[$pageKey];
-        $navigationElement .= "<a href=".$page.">".$pageKey."</a>";
+        $navigationElement .= "<a href=" . $page . ">" . $pageKey . "</a>";
 
         if (array_key_last($pages) != $pageKey)
             $navigationElement .= "&nbsp; &nbsp;";
     }
-    return $navigationElement."</nav><br/>";
+    return $navigationElement . "</nav><br/>";
 }
 
 /**
  * Get all variables from session and return in a associative array
  */
-function GetSession() {
+function GetSession()
+{
     // TODO
 }
 
-function ValidateHeaderVariables(&$title, &$stylesheetPath) {
+function ValidateHeaderVariables(&$title, &$stylesheetPath)
+{
     if (IsNullOrEmptyString($title))
         $title = 'Content Managment Page';
     if (IsNullOrEmptyString($stylesheetPath))
         $stylesheetPath = 'styleDefault.php';
 }
 
-function CreateLinkTags($additionalStylesheets = array()) {
+function CreateLinkTags($additionalStylesheets = array())
+{
     $returnVal = "";
-    foreach ($additionalStylesheets as $stylesheet)
-    {
-    	$returnVal .= '<link rel="stylesheet" href="'.$stylesheet.'" />';
+    foreach ($additionalStylesheets as $stylesheet) {
+        $returnVal .= '<link rel="stylesheet" href="' . $stylesheet . '" />';
     }
     return $returnVal;
 }

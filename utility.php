@@ -1,4 +1,5 @@
 <?php
+session_start();
 function IsNullOrEmptyString($str){
     return ($str === null || trim($str) === '');
 }
@@ -27,8 +28,8 @@ function CreateCookie($name, $value, $lifetime){
 Kills the given cookie
 */
 function KillCookie($name){
-    if(isset($_COOKIE[$name])){
-        setcookie($name, "", time()-10000);
+    if(!isset($_COOKIE[$name])){
+        setcookie($name, "", time()-36000, '/contentPage.php');
         return true;
     } else {
         return false;

@@ -5,7 +5,8 @@ include_once '../../utility.php';
 header('Content-Type: application/json');
 
 $json = '';
-$data = json_decode(file_get_contents('php://input'), true);
+$body = file_get_contents('php://input');
+$data = json_decode($body, true);
 
 if (array_key_exists("manufacturerId", $data) && array_key_exists("vehicleModel", $data) && array_key_exists("vehicleYear", $data) &&
     array_key_exists("vehicleImageUrl", $data) && array_key_exists("vehicleMpg", $data) && array_key_exists("vehicleBodyStyle", $data) &&

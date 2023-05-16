@@ -3,7 +3,7 @@ include 'header.php';
 
 echo GenerateHeader('Landing Page', array('homepage.css'));
 ?>
-<audio id="backgroundMusic" loop>
+<audio id="backgroundMusic" autoplay loop>
     <source src="LifeIsAHighway.mp3" type="audio/mp3">
 </audio>
 <div class="body-container">

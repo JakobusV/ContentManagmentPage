@@ -8,7 +8,6 @@ include_once "utility.php";
  */
 function GenerateHeader($title = 'Content Management', $additionalStylesheets = array()) {
     // TODO GET STYLE PATH FROM SESSION
-    $stylesheetPath = 'styleVariant1.php';
     ValidateHeaderVariables($title, $stylesheetPath);
     $links = CreateLinkTags($additionalStylesheets);
     $header =  '
@@ -61,7 +60,7 @@ function ValidateHeaderVariables(&$title, &$stylesheetPath) {
     if (IsNullOrEmptyString($title))
         $title = 'Content Managment Page';
     if (IsNullOrEmptyString($stylesheetPath))
-        $stylesheetPath = 'styleDefault.php';
+        $stylesheetPath = 'styleVariant1.php';
 }
 
 function CreateLinkTags($additionalStylesheets = array()) {

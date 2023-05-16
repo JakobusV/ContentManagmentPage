@@ -20,6 +20,8 @@ function CreateCookie($name, $value, $lifetime){
     if(!isset($_COOKIE[$name])){
         setcookie($name, $value, time()+$lifetime, '/');
         return true;
+    } else if ($_COOKIE[$name] != $value) {
+        setcookie($name, $value, time()+$lifetime, '/');
     } else {
         return false;
     }
@@ -28,8 +30,8 @@ function CreateCookie($name, $value, $lifetime){
 Kills the given cookie
 */
 function KillCookie($name){
-    if(!isset($_COOKIE[$name])){
-        setcookie($name, "", time()-36000, '/contentPage.php');
+    if(isset($_COOKIE[$name])){
+        setcookie($name, "", time()-36000*10000000000, '/');
         return true;
     } else {
         return false;

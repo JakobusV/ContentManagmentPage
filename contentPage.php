@@ -38,5 +38,4 @@ if(!isset($_SESSION["current_user"]["auth"])){
     include_once "subCategoryListGenerator.php";
 }
 
-
 ?>

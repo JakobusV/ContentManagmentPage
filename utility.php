@@ -17,7 +17,7 @@ use for html style preferences
 */
 function CreateCookie($name, $value, $lifetime){
     if(!isset($_COOKIE[$name])){
-        setcookie($name, $value, time()+$lifetime);
+        setcookie($name, $value, time()+$lifetime, '/');
         return true;
     } else {
         return false;
@@ -34,7 +34,7 @@ function KillCookie($name){
         return false;
     }
 }
-/** 
+/**
  * Creates a new session
 */
 //Use for account details
@@ -67,7 +67,11 @@ function LoggedInConfirmed($email, $password, $auth) {
 
 function GetUserPreferences($styleFilePath) {
     //TODO: Get user preference style from endpoint
-    CreateCookie("user_style_pref", $styleFilePath, 100000);
+    if(IsNullOrEmptyString($styleFilePath)){
+        $styleFilePath = "defaultStyle.php";
+    } else {
+        CreateCookie("user_style_pref", $styleFilePath, 3600);
+    }
 }
 
 function LoggedOut(){

@@ -9,7 +9,7 @@ include_once "loginCSS";
         <link rel="stylesheet" href="loginCSS.php"/>
     </head>
 
-    <body class="background">
+    <body>
         <div class="loginBlock">
             <h1>Login</h1>
             <p class="loginBlockItem">Email</p>

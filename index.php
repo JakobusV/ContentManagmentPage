@@ -1,8 +1,11 @@
-﻿<?php
+<?php
 include 'header.php';
 
 echo GenerateHeader('Landing Page', array('homepage.css'));
 ?>
+<audio id="backgroundMusic" loop>
+    <source src="LifeIsAHighway.mp3" type="audio/mp3">
+</audio>
 <div class="body-container">
   <div class="image-banner">
     <div class="banner-text">Welcome To Cars.com</div>
@@ -52,3 +55,18 @@ echo GenerateHeader('Landing Page', array('homepage.css'));
     </a>
   </div>
 </div>
+
+<script>
+    // Start playing background music
+    document.body.addEventListener("click", function () {
+        var backgroundMusic = document.getElementById("backgroundMusic");
+        backgroundMusic.volume = 0.2;
+        backgroundMusic.play(); 
+    })
+
+    // Pause background music
+    document.body.addEventListener("dblclick", function () {
+        var backgroundMusic = document.getElementById("backgroundMusic");
+        backgroundMusic.pause(); 
+    })
+</script>

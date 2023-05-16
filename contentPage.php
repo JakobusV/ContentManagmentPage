@@ -3,6 +3,10 @@ include_once "header.php";
 include_once "footer.php";
 include_once "subCategoryElement.php";
 
+if($_SESSION["current_user"][0] != 1 || $_SESSION["current_user"][0] != 0){
+    header("Location: Login.php");
+}
+
 echo GenerateHeader('Category Page');
 
 if (isset($_GET["category"]))

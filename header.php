@@ -41,6 +41,7 @@ function CreatePageArray() {
 
     $pages = array(
         "Home"=>"index.php",
+        "Logout"=>"logout.php",
     );
 
     while ($row = $categories->fetch_assoc())

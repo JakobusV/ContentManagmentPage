@@ -35,7 +35,7 @@ echo GenerateHeader('Landing Page', array('homepage.css'));
         <h1>$5 /mo</h1>
         <ul>
           <li>All Car Data</li>
-          <li>limited Features</li>
+          <li>Limited Features</li>
           <li>No Ads</li>
         </ul>
         <div class="sub-footer">Buy Now</div>
@@ -46,7 +46,7 @@ echo GenerateHeader('Landing Page', array('homepage.css'));
       <div class="sub-body" style="background-color: #DD1155">
         <h1>$10 /mo</h1>
         <ul>
-          <li>all car data</li>
+          <li>All car data</li>
           <li>Italian DLC Pack</li>
           <li>Gold Edition</li>
         </ul>

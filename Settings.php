@@ -1,6 +1,9 @@
 <?php
 include_once "header.php";
 include_once "SettingCSS";
+
+if (!isset($_SESSION["current_user"]["auth"]))
+    header("Location: Login.php");
 ?>
 <!DOCTYPE html>
 <html>

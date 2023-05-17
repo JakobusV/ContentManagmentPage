@@ -41,6 +41,7 @@ function CreatePageArray() {
 
     $pages = array(
         "Home"=>"index.php",
+        "Settings"=>"Settings.php",
         "Logout"=>"logout.php",
     );
 
